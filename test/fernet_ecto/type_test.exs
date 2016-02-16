@@ -6,11 +6,9 @@ defmodule Fernet.Ecto.TypeTest do
   end
 
   test "Fernet.Ecto.Type.encrypt uses the fernet secret defined in the configuration to encrypt plaintext into ciphertext while Fernet.Ecto.Type.decrypt does the opposite" do
-    plaintext1 = "The quick brown fox jumped over the lazy dog"
-    {:ok, ciphertext} = Fernet.Ecto.Type.encrypt(plaintext1)
-    assert plaintext1 != ciphertext
-
-    {:ok, plaintext2} = Fernet.Ecto.Type.decrypt(ciphertext)
-    assert plaintext1 == plaintext2
+    {:ok, ciphertext} = Fernet.Ecto.Type.encrypt("plaintext")
+    assert ciphertext != "plaintext"
+    {:ok, plaintext} = Fernet.Ecto.Type.decrypt(ciphertext)
+    assert plaintext == "plaintext"
   end
 end
