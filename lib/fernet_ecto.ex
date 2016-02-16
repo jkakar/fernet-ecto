@@ -1,6 +1,5 @@
 defmodule Fernet.Ecto do
   @moduledoc """
-  `Fernet.Ecto` provides
   [Fernet](https://github.com/kennyp/fernetex)-encrypted fields for Ecto.
 
   ## Defining a Fernet-encrypted field
