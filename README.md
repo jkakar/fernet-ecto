@@ -1,11 +1,13 @@
 # Fernet.Ecto
 
 `Fernet.Ecto` defines `Ecto.Type`-based fields that automatically
-Fernet-encrypt and decrypt values stored and loaded from a repository.
+Fernet-encrypt and decrypt values stored and loaded from a repository.  The
+[API documentation](http://hexdocs.pm/fernet_ecto/Fernet.Ecto.html) has more
+details.
 
 ## Installation
 
-1. Add [`fernet_ecto`](hex.pm/packages/fernet_ecto) to your list of
+1. Add [`fernet_ecto`](http://hex.pm/packages/fernet_ecto) to your list of
    dependencies in `mix.exs`:
 
    ```elixir
