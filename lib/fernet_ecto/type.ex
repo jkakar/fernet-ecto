@@ -1,12 +1,6 @@
 defmodule Fernet.Ecto.Type do
-  @moduledoc """
-  Helper functions for Ecto types that use Fernet to encode and decode values
-  in the database.
-  """
+  @moduledoc false
 
-  @doc """
-  Fernet-encrypt plaintext and return `{:ok, ciphertext}`.
-  """
   def encrypt(plaintext) do
     encrypt(plaintext, secret)
   end
@@ -24,10 +18,6 @@ defmodule Fernet.Ecto.Type do
     {:ok, ciphertext}
   end
 
-  @doc """
-  Fernet-decrypt ciphertext and return `{:ok, plaintext}` or raise a
-  `RuntimeError` if none of the available secrets are correct.
-  """
   def decrypt(ciphertext) do
     decrypt(ciphertext, secret)
   end
