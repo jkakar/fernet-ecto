@@ -29,7 +29,7 @@ details.
 ## Release
 
 * Bump the version here in the `README.md` and in `mix.exs`.
-* Run `git tag $VERSION` to tag the version that was just published.
+* Run `git tag v$VERSION` to tag the version that was just published.
 * Run `git push --tags origin master` to push tags to Github.
 * Run `mix hex.publish` to publish the new version.
 * Run `mix hex.docs` to publish the documentation.
