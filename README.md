@@ -5,7 +5,8 @@ Fernet-encrypt and decrypt values stored and loaded from a repository.
 
 ## Installation
 
-1. Add `fernet_ecto` to your list of dependencies in `mix.exs`:
+1. Add [`fernet_ecto`](hex.pm/packages/fernet_ecto) to your list of
+   dependencies in `mix.exs`:
 
    ```elixir
    def deps do
