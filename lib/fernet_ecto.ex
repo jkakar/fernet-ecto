@@ -12,8 +12,9 @@ defmodule Fernet.Ecto do
         use Ecto.Schema
 
         schema "person" do
-          field :name,   :string
-          field :secret, Fernet.Ecto.String
+          field :name,         :string
+          field :secret,       Fernet.Ecto.String
+          field :more_secrets, Fernet.Ecto.Map
         end
       end
 
