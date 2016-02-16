@@ -1,7 +1,7 @@
 # Fernet.Ecto
 
 `Fernet.Ecto` defines `Ecto.Type`-based fields that automatically
-Fernet-encrypt and decrypt values store and loaded from a repository.
+Fernet-encrypt and decrypt values stored and loaded from a repository.
 
 ## Installation
 
