@@ -14,7 +14,7 @@ defmodule Fernet.Ecto.String do
   @doc """
   Only accept binary and string plaintext values.
   """
-  def cast(plaintext) when is_binary(plaintext), do: plaintext
+  def cast(plaintext) when is_binary(plaintext), do: {:ok, plaintext}
   def cast(_), do: :error
 
   @doc """
