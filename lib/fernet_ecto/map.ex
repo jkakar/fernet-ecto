@@ -14,7 +14,7 @@ defmodule Fernet.Ecto.Map do
   @doc """
   Only accept map values.
   """
-  def cast(map) when is_map(map), do: map
+  def cast(map) when is_map(map), do: {:ok, map}
   def cast(_), do: :error
 
   @doc """

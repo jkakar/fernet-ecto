@@ -10,7 +10,7 @@ defmodule Fernet.Ecto.MapTest do
   end
 
   test "Fernet.Ecto.Map.cast ensures that only map values are accepted" do
-    assert Fernet.Ecto.Map.cast(%{key: :value}) == %{key: :value}
+    assert Fernet.Ecto.Map.cast(%{key: :value}) == {:ok, %{key: :value}}
     assert Fernet.Ecto.Map.cast("plaintext") == :error
     assert Fernet.Ecto.Map.cast(<<"plaintext">>) == :error
     assert Fernet.Ecto.Map.cast(:atom) == :error

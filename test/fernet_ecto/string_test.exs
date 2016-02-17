@@ -10,8 +10,8 @@ defmodule Fernet.Ecto.StringTest do
   end
 
   test "Fernet.Ecto.String.cast ensures that only binary and string values are accepted" do
-    assert Fernet.Ecto.String.cast("plaintext") == "plaintext"
-    assert Fernet.Ecto.String.cast(<<"plaintext">>) == <<"plaintext">>
+    assert Fernet.Ecto.String.cast("plaintext") == {:ok, "plaintext"}
+    assert Fernet.Ecto.String.cast(<<"plaintext">>) == {:ok, <<"plaintext">>}
     assert Fernet.Ecto.String.cast(:atom) == :error
     assert Fernet.Ecto.String.cast(1) == :error
     assert Fernet.Ecto.String.cast(1.0) == :error
