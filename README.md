@@ -1,7 +1,7 @@
 # Fernet.Ecto
 
 `Fernet.Ecto` defines `Ecto.Type`-based fields that automatically
-Fernet-encrypt and decrypt values stored and loaded from a repository.  The
+Fernet-encrypts and decrypts values stored and loaded from a repository.  The
 [API documentation](http://hexdocs.pm/fernet_ecto/Fernet.Ecto.html) has more
 details.
 
@@ -12,7 +12,7 @@ details.
 
    ```elixir
    def deps do
-     [{:fernet_ecto, "~> 0.0.3"}]
+     [{:fernet_ecto, "~> 0.0.4"}]
    end
    ```
 
