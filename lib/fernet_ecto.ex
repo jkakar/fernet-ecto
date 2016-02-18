@@ -66,7 +66,7 @@ defmodule Fernet.Ecto do
   The secret can be rotated by first adding a new secret and then loading
   every encrypted value from the database to decode it using the old key, and
   then writing it back to the database to encode it using the new key.  Once
-  this procedure has been complete the old key can be removed from the
+  this procedure has been completed the old key can be removed from the
   configuration.
   """
 end
