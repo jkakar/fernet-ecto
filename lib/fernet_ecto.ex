@@ -7,13 +7,32 @@ defmodule Fernet.Ecto do
   A Fernet-encrypted field can be defined on a schema just like any other Ecto
   field:
 
-      defmodule Person do
+      defmodule MyApp.User do
         use Ecto.Schema
 
-        schema "person" do
+        schema "users" do
           field :name,         :string
           field :secret,       Fernet.Ecto.String
           field :more_secrets, Fernet.Ecto.Map
+        end
+      end
+
+  Both `Fernet.Ecto.String` and `Fernet.Ecto.Map` are stored in `:binary`
+  columns in the database:
+
+      defmodule MyApp.Repo.Migrations.CreateUsers do
+        use Ecto.Migration
+
+        def up do
+          create table(:users) do
+            add :name,         :text
+            add :secret,       :binary
+            add :more_secrets, :binary
+          end
+        end
+
+        def down do
+          drop table(:users)
         end
       end
 
