@@ -1,7 +1,7 @@
 defmodule Fernet.Ecto.Mixfile do
   use Mix.Project
 
-  @version "0.0.4"
+  @version "0.0.5"
 
   def project do
     [app: :fernet_ecto,
@@ -40,7 +40,7 @@ defmodule Fernet.Ecto.Mixfile do
     [{:earmark, "~> 0.2.0", only: [:dev]},
      {:ex_doc, "~> 0.11.3", only: [:dev]},
      {:ecto, "~> 1.1.3"},
-     {:fernetex, git: "https://github.com/jkakar/fernetex.git"}]
+     {:fernetex, "~> 0.0.2"}]
   end
 
   defp package do

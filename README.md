@@ -12,7 +12,7 @@ details.
 
    ```elixir
    def deps do
-     [{:fernet_ecto, "~> 0.0.4"}]
+     [{:fernet_ecto, "~> 0.0.5"}]
    end
    ```
 
