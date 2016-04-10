@@ -6,15 +6,13 @@ defmodule Fernet.Ecto.Type do
   end
 
   defp encrypt(plaintext, secret) when is_binary(secret) do
-    {:ok, _iv, ciphertext} = Fernet.generate(message: plaintext,
-                                             secret: secret)
+    {:ok, _iv, ciphertext} = Fernet.generate(plaintext, secret: secret)
     {:ok, ciphertext}
   end
 
   defp encrypt(plaintext, secrets) when is_list(secrets) do
     [secret|_] = secrets
-    {:ok, _iv, ciphertext} = Fernet.generate(message: plaintext,
-                                             secret: secret)
+    {:ok, _iv, ciphertext} = Fernet.generate(plaintext, secret: secret)
     {:ok, ciphertext}
   end
 
@@ -23,7 +21,7 @@ defmodule Fernet.Ecto.Type do
   end
 
   defp decrypt(ciphertext, secret) when is_binary(secret) do
-    Fernet.verify(token: ciphertext,
+    Fernet.verify(ciphertext,
                   secret: secret,
                   enforce_ttl: enforce_ttl,
                   ttl: ttl)
@@ -36,7 +34,7 @@ defmodule Fernet.Ecto.Type do
   defp decrypt(ciphertext, secrets) when is_list(secrets) do
     [secret|rest] = secrets
     try do
-      Fernet.verify(token: ciphertext,
+      Fernet.verify(ciphertext,
                     secret: secret,
                     enforce_ttl: enforce_ttl,
                     ttl: ttl)
