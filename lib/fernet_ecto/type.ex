@@ -2,49 +2,43 @@ defmodule Fernet.Ecto.Type do
   @moduledoc false
 
   def encrypt(plaintext) do
-    encrypt(plaintext, secret)
+    encrypt(plaintext, key)
   end
 
-  defp encrypt(plaintext, secret) when is_binary(secret) do
-    {:ok, _iv, ciphertext} = Fernet.generate(plaintext, secret: secret)
+  defp encrypt(plaintext, key) when is_binary(key) do
+    {:ok, _iv, ciphertext} = Fernet.generate(plaintext, key: key)
     {:ok, ciphertext}
   end
 
-  defp encrypt(plaintext, secrets) when is_list(secrets) do
-    [secret|_] = secrets
-    {:ok, _iv, ciphertext} = Fernet.generate(plaintext, secret: secret)
+  defp encrypt(plaintext, keys) when is_list(keys) do
+    [key|_] = keys
+    {:ok, _iv, ciphertext} = Fernet.generate(plaintext, key: key)
     {:ok, ciphertext}
   end
 
   def decrypt(ciphertext) do
-    decrypt(ciphertext, secret)
+    decrypt(ciphertext, key)
   end
 
-  defp decrypt(ciphertext, secret) when is_binary(secret) do
-    Fernet.verify(ciphertext,
-                  secret: secret,
-                  enforce_ttl: enforce_ttl,
-                  ttl: ttl)
+  defp decrypt(ciphertext, key) when is_binary(key) do
+    Fernet.verify(ciphertext, key: key, enforce_ttl: enforce_ttl, ttl: ttl)
   end
 
   defp decrypt(_ciphertext, []) do
     raise "incorrect mac"
   end
 
-  defp decrypt(ciphertext, secrets) when is_list(secrets) do
-    [secret|rest] = secrets
+  defp decrypt(ciphertext, keys) when is_list(keys) do
+    [key|rest] = keys
     try do
-      Fernet.verify(ciphertext,
-                    secret: secret,
-                    enforce_ttl: enforce_ttl,
-                    ttl: ttl)
+      Fernet.verify(ciphertext, key: key, enforce_ttl: enforce_ttl, ttl: ttl)
     rescue
       RuntimeError -> decrypt(ciphertext, rest)
     end
   end
 
-  defp secret do
-    Application.fetch_env!(:fernet_ecto, :secret)
+  defp key do
+    Application.fetch_env!(:fernet_ecto, :key)
   end
 
   defp enforce_ttl do
