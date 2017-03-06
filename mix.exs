@@ -6,16 +6,16 @@ defmodule Fernet.Ecto.Mixfile do
   def project do
     [app: :fernet_ecto,
      description: "Fernet-encrypted fields for Ecto",
-     package: package,
+     package: package(),
      version: @version,
      name: "fernet-ecto",
      homepage_url: "https://github.com/jkakar/fernet-ecto",
-     elixir: "~> 1.2",
+     elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      docs: [source_ref: "v#{@version}", main: "Fernet.Ecto",
             source_url: "https://github.com/jkakar/fernet-ecto"],
-     deps: deps]
+     deps: deps()]
   end
 
   # Configuration for the OTP application
@@ -37,10 +37,10 @@ defmodule Fernet.Ecto.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:earmark, "~> 0.2.0", only: [:dev]},
-     {:ex_doc, "~> 0.11.3", only: [:dev]},
-     {:ecto, "~> 1.1.3"},
-     {:fernetex, "~> 0.2.0"}]
+    [{:earmark, "~> 1.1", only: [:dev]},
+     {:ex_doc, "~> 0.15.0", only: [:dev]},
+     {:ecto, "~> 2.1.4"},
+     {:fernetex, "~> 0.2.3"}]
   end
 
   defp package do
