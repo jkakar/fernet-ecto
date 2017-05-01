@@ -40,7 +40,7 @@ defmodule Fernet.Ecto.Mixfile do
     [{:earmark, "~> 1.1", only: [:dev]},
      {:ex_doc, "~> 0.15.0", only: [:dev]},
      {:ecto, "~> 2.1.4"},
-     {:fernetex, "~> 0.2.3"}]
+     {:fernetex, "~> 0.3.0"}]
   end
 
   defp package do

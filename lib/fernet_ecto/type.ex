@@ -2,7 +2,7 @@ defmodule Fernet.Ecto.Type do
   @moduledoc false
 
   def encrypt(plaintext) do
-    encrypt(plaintext, key)
+    encrypt(plaintext, key())
   end
 
   defp encrypt(plaintext, key) when is_binary(key) do
@@ -17,11 +17,12 @@ defmodule Fernet.Ecto.Type do
   end
 
   def decrypt(ciphertext) do
-    decrypt(ciphertext, key)
+    decrypt(ciphertext, key())
   end
 
   defp decrypt(ciphertext, key) when is_binary(key) do
-    Fernet.verify(ciphertext, key: key, enforce_ttl: enforce_ttl, ttl: ttl)
+    plaintext = Fernet.verify!(ciphertext, key: key, enforce_ttl: enforce_ttl(), ttl: ttl())
+    {:ok, plaintext}
   end
 
   defp decrypt(_ciphertext, []) do
@@ -31,7 +32,8 @@ defmodule Fernet.Ecto.Type do
   defp decrypt(ciphertext, keys) when is_list(keys) do
     [key|rest] = keys
     try do
-      Fernet.verify(ciphertext, key: key, enforce_ttl: enforce_ttl, ttl: ttl)
+      plaintext = Fernet.verify!(ciphertext, key: key, enforce_ttl: enforce_ttl(), ttl: ttl())
+      {:ok, plaintext}
     rescue
       RuntimeError -> decrypt(ciphertext, rest)
     end
@@ -42,7 +44,7 @@ defmodule Fernet.Ecto.Type do
   end
 
   defp enforce_ttl do
-    case ttl do
+    case ttl() do
       nil -> false
       _ -> true
     end

@@ -28,7 +28,7 @@ defmodule Fernet.Ecto.TypeTest do
     {:ok, ciphertext} = Fernet.Ecto.Type.encrypt("plaintext")
     {:ok, "plaintext"} = Fernet.verify(ciphertext, key: @key)
     assert_raise RuntimeError, "incorrect mac", fn ->
-      Fernet.verify(ciphertext, key: old_key)
+      Fernet.verify!(ciphertext, key: old_key)
     end
   end
 
